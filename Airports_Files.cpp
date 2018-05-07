@@ -2,7 +2,6 @@
 #include <iostream>
 #include <vector>
 #include <fstream>
-#include <iterator>
 #include <algorithm>
 
 using namespace std;
@@ -52,10 +51,10 @@ void Airports_Files::getName()
 
 void Airports_Files::generateAirports()
 {
+    a.IDs.push_back("SAP");
     a.IDs.push_back("MIA");
+    a.IDs.push_back("JFK");
     a.IDs.push_back("LAX");
-    a.IDs.push_back("RVM");
-    a.IDs.push_back("HTA");
-    a.IDs.push_back("MIAMI");
-    a.IDs.push_back("TONCONTIN");
+    a.IDs.push_back("MAD");
+    a.IDs.push_back("HND");
 }
