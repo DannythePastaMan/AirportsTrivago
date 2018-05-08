@@ -1,6 +1,1 @@
-SAP
-MIA
-JFK
-LAX
-MAD
-HND
+LEK; Germany; 1345.99; 7809.68

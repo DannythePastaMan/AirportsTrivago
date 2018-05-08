@@ -8,12 +8,19 @@ using namespace std;
 
 struct Airport
 {
-    int ID;
-    string name;
-    vector<string> countries;
-    vector<string> IDs;
+    string country;
+    string ID;
     double lat, lon;
+    Airport();
 };
+
+Airport::Airport()
+{
+    this->country = "";
+    this->ID = "";
+    this->lat = 0.00;
+    this->lon = 0.00;
+}
 
 Airport a;
 
@@ -25,18 +32,25 @@ Airports_Files::Airports_Files()
 void Airports_Files::FileInput()
 {    
     ofstream file("Airports.txt");
-    generateAirports();
 
     if(!file.good())
     {
         cout<<"File not opened";
     }
 
-    for (size_t i = 0; i < a.IDs.size(); i++)
-    {
-        file<<a.IDs[i]<<endl;
-    }
+    cout<<"****Ingrese datos****";
+    
+    cout<<"ID: ";
+    cin>>a.ID;
 
+    cout<<"Country: ";
+    cin>>a.country;
+
+    cout<<"Lat and long: ";
+    cin>>a.lat;
+    cin>>a.lon;
+
+    file<<a.ID<<"; "<<a.country<<"; "<<a.lat<<"; "<<a.lon<<endl;
 }
 
 void Airports_Files::getID()
@@ -47,14 +61,4 @@ void Airports_Files::getID()
 void Airports_Files::getName()
 {
 
-}
-
-void Airports_Files::generateAirports()
-{
-    a.IDs.push_back("SAP");
-    a.IDs.push_back("MIA");
-    a.IDs.push_back("JFK");
-    a.IDs.push_back("LAX");
-    a.IDs.push_back("MAD");
-    a.IDs.push_back("HND");
 }
