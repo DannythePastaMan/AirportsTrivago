@@ -1,9 +1,12 @@
 #include <iostream>
+#include "Airports_Files.h"
 
 using namespace std;
 
 int main()
 {
-    cout<<"Hello\n"<<endl;
+    Airports_Files af;
+    //af.FileInput();
+    af.getAirportInfo();
     return 0;
 }
