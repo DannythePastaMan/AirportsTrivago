@@ -61,9 +61,8 @@ string Airports_Files::getAirportInfo()
 
     if(file.is_open())
     {
-        while(!file.eof())
+        while(getline(file, a.country))
         {
-            getline(file, a.country);
             cout<<"Airport Info: "<<a.country;
             cout<<endl;
         }
