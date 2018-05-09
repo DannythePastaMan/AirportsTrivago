@@ -8,7 +8,7 @@ using namespace std;
 
 struct Airport
 {
-    string country;
+    std::string country;
     string ID;
     double lat, lon;
     Airport();
