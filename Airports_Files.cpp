@@ -12,7 +12,7 @@ struct Airport
     string ID;
     double lat, lon;
     Airport();
-};
+}a;
 
 Airport::Airport()
 {
@@ -21,8 +21,6 @@ Airport::Airport()
     this->lat = 0;
     this->lon = 0;
 }
-
-Airport a;
 
 Airports_Files::Airports_Files()
 {
