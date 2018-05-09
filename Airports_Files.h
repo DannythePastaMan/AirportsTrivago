@@ -1,13 +1,15 @@
 #ifndef AIRPORTS_FILES_H
 #define AIRPORTS_FILES_H
 
+#include <iostream>
+
 class Airports_Files
 {
 
 public:
     Airports_Files();
-    void getName();
-    void getID();
+    std::string getCountry();
+    std::string getID();
     void FileInput();
     void generateAirports();
 };

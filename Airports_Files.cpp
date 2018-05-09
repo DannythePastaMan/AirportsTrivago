@@ -53,12 +53,12 @@ void Airports_Files::FileInput()
     file<<a.ID<<"; "<<a.country<<"; "<<a.lat<<"; "<<a.lon<<endl;
 }
 
-void Airports_Files::getID()
+string Airports_Files::getID()
 {
-
+    return a.ID;
 }
 
-void Airports_Files::getName()
+string Airports_Files::getCountry()
 {
-
+    return a.country;
 }
