@@ -8,10 +8,8 @@ class Airports_Files
 
 public:
     Airports_Files();
-    std::string getCountry();
-    std::string getID();
+    std::string getAirportInfo();
     void FileInput();
-    void generateAirports();
 };
 
 #endif // !AIRPORTS_FILES_H

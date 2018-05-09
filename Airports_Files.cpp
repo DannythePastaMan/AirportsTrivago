@@ -18,8 +18,8 @@ Airport::Airport()
 {
     this->country = "";
     this->ID = "";
-    this->lat = 0.00;
-    this->lon = 0.00;
+    this->lat = 0;
+    this->lon = 0;
 }
 
 Airport a;
@@ -31,14 +31,15 @@ Airports_Files::Airports_Files()
 
 void Airports_Files::FileInput()
 {    
-    ofstream file("Airports.txt");
+    ofstream file("Airports.txt", fstream::app);
 
     if(!file.good())
     {
         cout<<"File not opened";
     }
 
-    cout<<"****Ingrese datos****";
+    
+    cout<<"****Ingrese datos****\n";
     
     cout<<"ID: ";
     cin>>a.ID;
@@ -46,19 +47,28 @@ void Airports_Files::FileInput()
     cout<<"Country: ";
     cin>>a.country;
 
-    cout<<"Lat and long: ";
+    cout<<"Lattitude: ";
     cin>>a.lat;
+
+    cout<<"Longitude: ";
     cin>>a.lon;
 
     file<<a.ID<<"; "<<a.country<<"; "<<a.lat<<"; "<<a.lon<<endl;
+    file.close(); 
 }
 
-string Airports_Files::getID()
+string Airports_Files::getAirportInfo()
 {
-    return a.ID;
-}
+    ifstream file("Airports.txt");
 
-string Airports_Files::getCountry()
-{
+    if(file.is_open())
+    {
+        while(!file.eof())
+        {
+            getline(file, a.country);
+            cout<<"Airport Info: "<<a.country;
+            cout<<endl;
+        }
+    }
     return a.country;
 }
