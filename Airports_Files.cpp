@@ -36,7 +36,6 @@ void Airports_Files::FileInput()
         cout<<"File not opened";
     }
 
-    
     cout<<"****Ingrese datos****\n";
     
     cout<<"ID: ";
