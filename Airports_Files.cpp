@@ -28,7 +28,7 @@ Airports_Files::Airports_Files()
 
 }
 
-void Airports_Files::createFile(string code, string country, double lat, double lon)
+void Airports_Files::createFile(char *code, char *country, double lat, double lon)
 {    
     ofstream file("Airports.txt", ios::app);
 
@@ -57,7 +57,25 @@ string Airports_Files::readFile()
     return file_text;
 }
 
-void Airports_Files::reloadFile()
+/*void Airports_Files::reloadFile(char *airport_to_replace, char *airport_replaced)
 {
- 
-}
+    ifstream file("Airports.txt");
+    ofstream file_tmp("Airports2.txt");
+
+    if(!file || !file_tmp)
+    {
+        cout<<"No file found.";
+    }
+
+    char *tmp_string;
+
+    while(file >> tmp_string)
+    {
+        if(tmp_string == airport_to_replace)
+        {
+            tmp_string = airport_replaced;
+        }
+
+        file_tmp<<tmp_string<<endl;
+    }
+}*/

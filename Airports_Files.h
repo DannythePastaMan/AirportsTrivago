@@ -8,9 +8,9 @@ class Airports_Files
 
 public:
     Airports_Files();
-    void createFile(std::string, std::string, double, double);
+    void createFile(char *, char *, double, double);
     std::string readFile();
-    void reloadFile();
+    void reloadFile(char *, char *);
 };
 
 #endif // !AIRPORTS_FILES_H
