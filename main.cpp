@@ -8,14 +8,14 @@ int main()
 {
     //char *airport_to_replace = "LAX"; 
     //char *airport_replaced = "TEXAS";
-    char *code = "FAX"; 
-    char *country = "MSA"; 
+    char *code = "FRAX"; 
+    char *country = "LIASA"; 
 
     char *newCode = "LAX";
     char *newCountry = "HND";
     double newLat = 12, newLon = 80;
 
-    double lat = 90, lon = 80;
+    double lat = 798, lon = 436;
 
     Airports_Files af;
     

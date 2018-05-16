@@ -38,6 +38,7 @@ void Airports_Files::createFile(char *code, char *country, double lat, double lo
     }
 
     file<<code<<";"<<country<<";"<<lat<<";"<<lon<<endl;
+    cout<<endl;
     file.close(); 
 }
 
@@ -60,7 +61,7 @@ string Airports_Files::readFile()
 void Airports_Files::reloadFile(char *airport_to_replace, char *airport_replaced, char * new_country, double new_lat, double new_lon)
 {
     ifstream file("Airports.txt");
-    ofstream file_tmp("Airports2.txt", ios::trunc);
+    ofstream file_tmp("Airports2.txt");
 
     if(!file || !file_tmp)
     {
@@ -69,15 +70,13 @@ void Airports_Files::reloadFile(char *airport_to_replace, char *airport_replaced
 
     string tmp_string;
 
-    while(file >> tmp_string)
+    while(file>>tmp_string)
     {
         if(tmp_string == airport_to_replace)
         {
             tmp_string = airport_replaced;
+            delete airport_to_replace;
         }
-
         file_tmp<<tmp_string<<endl<<airport_replaced<<";"<<new_country<<";"<<new_lat<<";"<<new_lon<<endl;
-        file.close();
-        file_tmp.close();
     }
 }
