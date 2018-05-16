@@ -8,14 +8,19 @@ int main()
 {
     //char *airport_to_replace = "LAX"; 
     //char *airport_replaced = "TEXAS";
-    char *code = "TAX"; 
-    char *country = "USA"; 
+    char *code = "FAX"; 
+    char *country = "MSA"; 
+
+    char *newCode = "LAX";
+    char *newCountry = "HND";
+    double newLat = 12, newLon = 80;
+
     double lat = 90, lon = 80;
 
     Airports_Files af;
     
-    af.createFile(code, country, lat, lon);
-    af.readFile();
-    //af.reloadFile(airport_to_replace, airport_replaced);
+    //af.createFile(code, country, lat, lon);
+    //af.readFile();
+    af.reloadFile(code, newCode, newCountry, newLat, newLon);
     return 0;
 }

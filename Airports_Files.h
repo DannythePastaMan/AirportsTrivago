@@ -10,7 +10,7 @@ public:
     Airports_Files();
     void createFile(char *, char *, double, double);
     std::string readFile();
-    void reloadFile(char *, char *);
+    void reloadFile(char *, char *, char *, double, double);
 };
 
 #endif // !AIRPORTS_FILES_H

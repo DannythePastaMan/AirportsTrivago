@@ -37,7 +37,7 @@ void Airports_Files::createFile(char *code, char *country, double lat, double lo
         cout<<"File not opened";
     }
 
-    file<<code<<"; "<<country<<"; "<<lat<<"; "<<lon<<endl;
+    file<<code<<";"<<country<<";"<<lat<<";"<<lon<<endl;
     file.close(); 
 }
 
@@ -51,23 +51,23 @@ string Airports_Files::readFile()
         while(!file.eof())
         {
             getline(file, file_text);
-            cout<<file_text<<endl;
+            //cout<<file_text<<endl;
         }
     }
     return file_text;
 }
 
-/*void Airports_Files::reloadFile(char *airport_to_replace, char *airport_replaced)
+void Airports_Files::reloadFile(char *airport_to_replace, char *airport_replaced, char * new_country, double new_lat, double new_lon)
 {
     ifstream file("Airports.txt");
-    ofstream file_tmp("Airports2.txt");
+    ofstream file_tmp("Airports2.txt", ios::trunc);
 
     if(!file || !file_tmp)
     {
         cout<<"No file found.";
     }
 
-    char *tmp_string;
+    string tmp_string;
 
     while(file >> tmp_string)
     {
@@ -76,6 +76,8 @@ string Airports_Files::readFile()
             tmp_string = airport_replaced;
         }
 
-        file_tmp<<tmp_string<<endl;
+        file_tmp<<tmp_string<<endl<<airport_replaced<<";"<<new_country<<";"<<new_lat<<";"<<new_lon<<endl;
+        file.close();
+        file_tmp.close();
     }
-}*/
+}
