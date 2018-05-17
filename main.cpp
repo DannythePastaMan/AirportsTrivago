@@ -20,7 +20,7 @@ int main()
     Airports_Files af;
     
     af.createFile(code, country, lat, lon);
-    af.readFile();
+    cout<< af.readFile() <<endl;
     //af.reloadFile(code, newCode, newCountry, newLat, newLon);
     return 0;
 }

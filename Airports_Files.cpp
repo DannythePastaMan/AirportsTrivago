@@ -1,8 +1,8 @@
 #include "Airports_Files.h"
 #include <iostream>
-#include <vector>
 #include <fstream>
-#include <algorithm>
+#include <string.h>
+#include <cstdlib>
 
 using namespace std;
 
@@ -42,20 +42,31 @@ void Airports_Files::createFile(char *code, char *country, double lat, double lo
     file.close(); 
 }
 
-string Airports_Files::readFile()
+char *Airports_Files::readFile()
 {
-    ifstream file("Airports.txt");
+    ifstream file;
     string file_text;
+    const char *official_ret = "";
+    string ret_str;
+
+    file.open("Airports.txt");
 
     if(file.is_open())
     {
-        while(!file.eof())
+        char *ret = new char[file_text.length() + 1];
+        while(getline(file, file_text))
         {
-            getline(file, file_text);
-            cout<<file_text<<endl;
+           strcpy(ret, file_text.c_str()); 
+           ret_str += ret;
+           ret_str += '\n';
+           //return ret;
         }
+        official_ret = ret_str.c_str();
+        char *return_ch = const_cast<char *>(official_ret);
+        return return_ch;
+        //return official_ret;
     }
-    return file_text;
+    return 0;
 }
 
 void Airports_Files::reloadFile(char *airport_to_replace, char *airport_replaced, char * new_country, double new_lat, double new_lon)
