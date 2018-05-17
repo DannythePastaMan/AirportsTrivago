@@ -52,7 +52,7 @@ string Airports_Files::readFile()
         while(!file.eof())
         {
             getline(file, file_text);
-            //cout<<file_text<<endl;
+            cout<<file_text<<endl;
         }
     }
     return file_text;
@@ -66,17 +66,23 @@ void Airports_Files::reloadFile(char *airport_to_replace, char *airport_replaced
     if(!file || !file_tmp)
     {
         cout<<"No file found.";
+        return;
     }
 
     string tmp_string;
 
-    while(file>>tmp_string)
+    while(getline(file, tmp_string))
     {
         if(tmp_string == airport_to_replace)
         {
-            tmp_string = airport_replaced;
-            delete airport_to_replace;
+            file_tmp<<airport_replaced<<";"<<new_country<<";"<<new_lat<<";"<<new_lon<<endl;
         }
-        file_tmp<<tmp_string<<endl<<airport_replaced<<";"<<new_country<<";"<<new_lat<<";"<<new_lon<<endl;
+
+        else
+        {
+            file_tmp<<tmp_string<<endl;
+        }
     }
+    file.close();
+    file_tmp.close();
 }
