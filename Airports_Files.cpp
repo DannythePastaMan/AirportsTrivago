@@ -43,16 +43,17 @@ void Airports_Files::createFile(char *code, char *country, double lat, double lo
     file.close(); 
 }
 
-char *Airports_Files::readFile()
+const char *Airports_Files::readFile()
 {
     ifstream file;
     string file_text;
-    const char *official_ret = "";
-    string ret_str;
+    string line;
+    //const char *official_ret = "";
+    //string ret_str;
 
     file.open("Airports.txt");
 
-    if(file.is_open())
+    /*if(file.is_open())
     {
         char *ret = new char;
         while(getline(file, file_text))
@@ -64,9 +65,17 @@ char *Airports_Files::readFile()
          
         official_ret = ret_str.c_str();
         char *return_ch = const_cast<char *>(official_ret);
+        file.close();
         return return_ch;
+    }*/
+
+    while(file >> file_text)
+    {
+        file_text += line;
     }
-    return 0;
+    file.close();
+
+    return file_text.c_str();
 }
 
 void Airports_Files::reloadFile(char *airport_to_replace, char *new_airport, char * new_country, double new_lat, double new_lon)
