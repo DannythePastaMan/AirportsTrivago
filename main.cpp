@@ -11,15 +11,15 @@ int main()
     char *code = "JFK"; 
     char *country = "USA"; 
 
-    //char *newCode = "LAX";
-    //char *newCountry = "HND";
-    //double newLat = 12, newLon = 80;
+    char *newCode = "LAX";
+    char *newCountry = "HND";
+    double newLat = 12, newLon = 80;
 
     double lat = 1234.4, lon = 425646.4;
 
     Airports_Files af;
     
-    af.createFile(code, country, lat, lon);
+    //af.createFile(code, country, lat, lon);
     cout<< af.readFile() <<endl;
     //af.reloadFile(code, newCode, newCountry, newLat, newLon);
     return 0;

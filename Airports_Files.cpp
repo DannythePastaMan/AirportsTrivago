@@ -2,6 +2,7 @@
 #include <iostream>
 #include <fstream>
 #include <string.h>
+#include <sstream>
 #include <cstdlib>
 
 using namespace std;
@@ -53,23 +54,22 @@ char *Airports_Files::readFile()
 
     if(file.is_open())
     {
-        char *ret = new char[file_text.length() + 1];
+        char *ret = new char;
         while(getline(file, file_text))
         {
            strcpy(ret, file_text.c_str()); 
            ret_str += ret;
-           ret_str += '\n';
-           //return ret;
+           ret_str += '\r\n';
         }
+         
         official_ret = ret_str.c_str();
         char *return_ch = const_cast<char *>(official_ret);
         return return_ch;
-        //return official_ret;
     }
     return 0;
 }
 
-void Airports_Files::reloadFile(char *airport_to_replace, char *airport_replaced, char * new_country, double new_lat, double new_lon)
+void Airports_Files::reloadFile(char *airport_to_replace, char *new_airport, char * new_country, double new_lat, double new_lon)
 {
     ifstream file("Airports.txt");
     ofstream file_tmp("Airports2.txt");
@@ -84,9 +84,13 @@ void Airports_Files::reloadFile(char *airport_to_replace, char *airport_replaced
 
     while(getline(file, tmp_string))
     {
-        if(tmp_string == airport_to_replace)
+        istringstream airport(tmp_string);
+        string word;
+        getline(airport, word, ';');
+        
+        if(tmp_string == word)
         {
-            file_tmp<<airport_replaced<<";"<<new_country<<";"<<new_lat<<";"<<new_lon<<endl;
+            file_tmp<<new_airport<<';'<<new_country<<';'<<new_lat<<';'<<new_lon<<endl;
         }
 
         else
