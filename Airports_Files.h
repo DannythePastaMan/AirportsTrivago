@@ -9,7 +9,7 @@ class Airports_Files
 public:
     Airports_Files();
     void createFile(char *, char *, double, double);
-    const char *readFile();
+    void readFile(char *, int);
     void reloadFile(char *, char *, char *, double, double);
 };
 

@@ -6,21 +6,23 @@ using namespace std;
 
 int main()
 {
-    //char *airport_to_replace = "LAX"; 
-    //char *airport_replaced = "TEXAS";
-    char *code = "JFK"; 
-    char *country = "USA"; 
+    char *code;
+    int opc = -1;
+    cout << "Airports\n 1. Create and Add Airports.\n 2. Read Files.\n 3. Reload file updated." << endl;
+    cout << "Chose an option: ";
+    cin >> opc;
 
-    char *newCode = "LAX";
-    char *newCountry = "HND";
-    double newLat = 12, newLon = 80;
+    do
+    {
+        switch(opc)
+        {
+            case 1:
+            {
+                cout<<"Ingrese codigo: ";
+                cin >> code;
+            }
+        }
 
-    double lat = 1234.4, lon = 425646.4;
-
-    Airports_Files af;
-    
-    //af.createFile(code, country, lat, lon);
-    cout<< af.readFile() <<endl;
-    //af.reloadFile(code, newCode, newCountry, newLat, newLon);
+    }while(opc != -1);
     return 0;
 }
