@@ -43,13 +43,12 @@ void Airports_Files::createFile(char *code, char *country, double lat, double lo
     file.close(); 
 }
 
-void Airports_Files::readFile(char *buffer, int size)
+void Airports_Files::readFile(char *buffer)
 {
     ifstream file("Airports.txt");
     string file_text;
     string line;
-    //const char *official_ret = "";
-    //string ret_str;
+  
     if(!file.good())
     {
         cout<<"File not found"<<endl;
@@ -59,24 +58,8 @@ void Airports_Files::readFile(char *buffer, int size)
     while(!file.eof())
     {
         file >> buffer;
-        cout<<buffer<<endl;   
+        cout << buffer << endl;   
     }
-/*
-    if(file.is_open())
-    {
-        char *ret = new char;
-        while(getline(file, file_text))
-        {
-           strcpy(ret, file_text.c_str()); 
-           ret_str += ret;
-           ret_str += '\r\n';
-        }
-         
-        official_ret = ret_str.c_str();
-        char *return_ch = const_cast<char *>(official_ret);
-        file.close();
-        return return_ch;
-    }*/
 }
 
 void Airports_Files::reloadFile(char *airport_to_replace, char *new_airport, char * new_country, double new_lat, double new_lon)
@@ -84,13 +67,13 @@ void Airports_Files::reloadFile(char *airport_to_replace, char *new_airport, cha
     ifstream file("Airports.txt");
     ofstream file_tmp("Airports2.txt");
 
+    string tmp_string;
+
     if(!file || !file_tmp)
     {
         cout<<"No file found.";
         return;
     }
-
-    string tmp_string;
 
     while(getline(file, tmp_string))
     {
@@ -110,4 +93,31 @@ void Airports_Files::reloadFile(char *airport_to_replace, char *new_airport, cha
     }
     file.close();
     file_tmp.close();
+}
+
+void Airports_Files::deleteLine(char *line_to_delete)
+{
+	ifstream file("Airports.txt", ios::in);
+	ofstream file2("Ex.txt");
+	string line;
+    string str;
+
+	if (!file.good())
+	{
+		cout << "Not Found" << endl;
+		return;
+	}
+
+	while (getline(file, line))
+	{
+        str = line.substr(0, 3);
+        
+        if(str != line_to_delete)
+        {
+            file2 << line << endl;
+        }
+	}
+
+	file.close();
+	file2.close();
 }
