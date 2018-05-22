@@ -14,7 +14,7 @@ int main()
 	do
 	{
 		opc = -1;
-		char code[5];
+		char code[3];
 		char country[5];
 		double lat, lon;
 		cout << "Airports\n 1. Create and Add Airports.\n 2. Read Files.\n 3. Reload file updated.\n4. Delete airport." << endl;
@@ -52,9 +52,9 @@ int main()
 
 			case 3:
 			{
-				char old_airport[5]; 
-                char new_airport[5]; 
-                char new_country[4];
+				char old_airport[3]; 
+                char new_airport[3]; 
+                char new_country[5];
 				double new_lat, new_lon;
 
 				cout << "Ingrese aeropuerto a cambiar: ";

@@ -5,6 +5,9 @@
 #include <sstream>
 #include <cstdlib>
 
+#define CODE 3
+#define COUNTRY 5
+
 using namespace std;
 
 /*struct Airport
@@ -36,6 +39,13 @@ void Airports_Files::createFile(char *code, char *country, double lat, double lo
     if(!file.good())
     {
         cout<<"File not opened";
+    }
+
+    if(code[CODE] > 3 || country[COUNTRY] > 5)
+    {
+        sprintf(code, "Airports Trivago, argument must be in the range of 3 or 5 respectively: %i", 3);
+         throw invalid_argument(code);
+         throw invalid_argument(country);
     }
 
     file<<code<<";"<<country<<";"<<lat<<";"<<lon<<endl;
@@ -77,19 +87,15 @@ void Airports_Files::reloadFile(char *airport_to_replace, char *new_airport, cha
 
     while(getline(file, tmp_string))
     {
-        istringstream airport(tmp_string);
-        string word;
-        getline(airport, word, ';');
-        
-        if(tmp_string == word)
-        {
-            file_tmp<<new_airport<<';'<<new_country<<';'<<new_lat<<';'<<new_lon<<endl;
-        }
+        string str = tmp_string.substr(0, 3);
 
-        else
+        if(str == airport_to_replace)
         {
-            file_tmp<<tmp_string<<endl;
+            deleteLine(airport_to_replace);
+            file_tmp << new_airport << ";" << new_country << ";" << new_lat << ";" << new_lon << endl;
         }
+        
+        file_tmp << tmp_string << endl;
     }
     file.close();
     file_tmp.close();
