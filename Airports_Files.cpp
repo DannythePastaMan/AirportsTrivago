@@ -56,8 +56,6 @@ void Airports_Files::createFile(char *code, char *country, double lat, double lo
 void Airports_Files::readFile(char *buffer)
 {
     ifstream file("Airports.txt");
-    string file_text;
-    string line;
   
     if(!file.good())
     {
@@ -65,9 +63,8 @@ void Airports_Files::readFile(char *buffer)
         return;
     }
 
-    while(!file.eof())
+    while(file >> buffer)
     {
-        file >> buffer;
         cout << buffer << endl;   
     }
 }
@@ -75,7 +72,7 @@ void Airports_Files::readFile(char *buffer)
 void Airports_Files::reloadFile(char *airport_to_replace, char *new_airport, char * new_country, double new_lat, double new_lon)
 {
     ifstream file("Airports.txt");
-    ofstream file_tmp("Airports2.txt");
+    ofstream file_tmp("Airports1.txt");
 
     string tmp_string;
 
@@ -91,12 +88,19 @@ void Airports_Files::reloadFile(char *airport_to_replace, char *new_airport, cha
 
         if(str == airport_to_replace)
         {
-            file_tmp << str << ";" << new_country << ";" << new_lat << ";" << new_lon << endl;
             deleteLine(airport_to_replace);
+            str = new_airport;
+            file_tmp << str << ";" << new_country << ";" << new_lat << ";" << new_lon << endl;
         }
-        
-        file_tmp << tmp_string << endl;
+        else if(str != airport_to_replace)
+        {
+            file_tmp << tmp_string << endl;
+        }
     }
+
+    remove("Airports.txt");
+    rename("Airports1.txt", "Airports.txt");
+    
     file.close();
     file_tmp.close();
 }
@@ -130,29 +134,4 @@ void Airports_Files::deleteLine(char *line_to_delete)
     
     file.close();
     file2.close();
-       
-}
-
-void Airports_Files::deleteLineAux(char *line_to_delete)
-{
-    fstream file("Ex.txt");
-    string str;
-
-    if(!file.good())
-    {
-        cout << "Not found" << endl;
-        return;
-    }   
-
-    while(getline(file, str))
-    {
-        string str2 = str.substr(0, 3);
-
-        if(str2 != line_to_delete)
-        {
-            file << str << endl;
-        }
-	}
-    
-	file.close();
 }
