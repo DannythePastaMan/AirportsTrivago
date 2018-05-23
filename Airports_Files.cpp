@@ -43,7 +43,7 @@ void Airports_Files::createFile(char *code, char *country, double lat, double lo
 
     if(code[CODE] > 3 || country[COUNTRY] > 5)
     {
-        sprintf(code, "Airports Trivago, argument must be in the range of 3 or 5 respectively: %i", 3);
+        sprintf(code, "Airports Trivago, argument must be in the range of 3 or 5 respectively: %i", 3 | 5);
          throw invalid_argument(code);
          throw invalid_argument(country);
     }
@@ -91,8 +91,8 @@ void Airports_Files::reloadFile(char *airport_to_replace, char *new_airport, cha
 
         if(str == airport_to_replace)
         {
+            file_tmp << str << ";" << new_country << ";" << new_lat << ";" << new_lon << endl;
             deleteLine(airport_to_replace);
-            file_tmp << new_airport << ";" << new_country << ";" << new_lat << ";" << new_lon << endl;
         }
         
         file_tmp << tmp_string << endl;
@@ -104,7 +104,8 @@ void Airports_Files::reloadFile(char *airport_to_replace, char *new_airport, cha
 void Airports_Files::deleteLine(char *line_to_delete)
 {
 	ifstream file("Airports.txt", ios::in);
-	ofstream file2("Ex.txt");
+	ofstream file2("Ex.txt", ios::app);
+    
 	string line;
     string str;
 
@@ -120,10 +121,38 @@ void Airports_Files::deleteLine(char *line_to_delete)
         
         if(str != line_to_delete)
         {
-            file2 << line << endl;
+            file2 << line << endl;   
+        }
+    }
+
+    remove("Airports.txt");
+    rename("Ex.txt", "Airports.txt");
+    
+    file.close();
+    file2.close();
+       
+}
+
+void Airports_Files::deleteLineAux(char *line_to_delete)
+{
+    fstream file("Ex.txt");
+    string str;
+
+    if(!file.good())
+    {
+        cout << "Not found" << endl;
+        return;
+    }   
+
+    while(getline(file, str))
+    {
+        string str2 = str.substr(0, 3);
+
+        if(str2 != line_to_delete)
+        {
+            file << str << endl;
         }
 	}
-
+    
 	file.close();
-	file2.close();
 }

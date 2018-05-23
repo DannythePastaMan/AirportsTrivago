@@ -78,7 +78,7 @@ int main()
             
 			case 4:
 			{
-				char atd[5];
+				char atd[3];
 				cout << "Aiprort to delete: ";
 				cin >> atd;
 

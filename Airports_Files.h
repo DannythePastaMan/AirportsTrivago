@@ -11,7 +11,8 @@ public:
     void createFile(char *, char *, double, double);
     void readFile(char *);
     void reloadFile(char *, char *, char *, double, double);
-    void deleteLine(char *line_to_delete);
+    void deleteLine(char *);
+    void deleteLineAux(char *);
 };
 
 #endif // !AIRPORTS_FILES_H
